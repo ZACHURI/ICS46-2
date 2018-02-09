@@ -8,7 +8,7 @@ using namespace std;
 
 ICS46_DYNAMIC_FACTORY_REGISTER(OthelloAI,pmang::PatricksAI,"Patrick Mang's AI (Required)");
 
-
+//find all valid moves for player
 vector<pair<int,int>> pmang::PatricksAI::findMoves(const OthelloGameState& s, const OthelloBoard& board)
 {
 	vector<pair<int,int>> moves;
@@ -26,6 +26,7 @@ vector<pair<int,int>> pmang::PatricksAI::findMoves(const OthelloGameState& s, co
 	return moves;
 }
 
+//evaluate each valid move based on advantage and gain
 int pmang::PatricksAI::eval(OthelloGameState& state,OthelloCell& turn)
 {
 	int result = 0;
@@ -92,6 +93,7 @@ int pmang::PatricksAI::eval(OthelloGameState& state,OthelloCell& turn)
 	return result;
 }
 
+//get the best valid move
 pair<int,int> pmang::PatricksAI::getHighestEval(int bestEval,int currentEval, pair<int,int> bestMove, pair<int,int> currentMove)
 {
 	if(currentEval>bestEval)
@@ -103,6 +105,7 @@ pair<int,int> pmang::PatricksAI::getHighestEval(int bestEval,int currentEval, pa
 	return bestMove;
 }
 
+//look x number of moves into the future to determine best move at moment
 int pmang::PatricksAI::search(OthelloGameState& s, int depth, OthelloCell& myColor)
 {
 	//OthelloBoard board = s.board();
@@ -167,6 +170,7 @@ int pmang::PatricksAI::search(OthelloGameState& s, int depth, OthelloCell& myCol
 	}
 }
 
+//choose the move based on the best evaluation
 pair<int,int> pmang::PatricksAI::chooseMove(const OthelloGameState& state)
 {
 	int moveEvaluation;
