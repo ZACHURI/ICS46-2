@@ -13,6 +13,7 @@ PatricksMazeSolver::PatricksMazeSolver()
 
 }
 
+//solve the maze
 void PatricksMazeSolver::solveMaze(const Maze& maze, MazeSolution& mazeSolution)
 {
 	mazeSolution.restart();
@@ -20,6 +21,7 @@ void PatricksMazeSolver::solveMaze(const Maze& maze, MazeSolution& mazeSolution)
   	recursiveSolver(starting.first,starting.second,maze,mazeSolution);                     
 }
 
+//helper function to return opposite direction
 Direction PatricksMazeSolver::opposite(Direction d)
 {
 	if(d==Direction::right)
@@ -32,6 +34,7 @@ Direction PatricksMazeSolver::opposite(Direction d)
 		return Direction::up; 
 }
 
+//check for open paths at a particular point (x,y)
 vector<Direction> PatricksMazeSolver::checkForPaths(int x, int y,const Maze& maze, MazeSolution& mazeSolution)
 {
 	vector<Direction> track = {};
@@ -49,6 +52,7 @@ vector<Direction> PatricksMazeSolver::checkForPaths(int x, int y,const Maze& maz
 	return track;
 }
 
+//helper function to get the cell in a particular direction from (x,y)
 pair<int,int> PatricksMazeSolver::getCell(int x, int y, Direction d)
 {
 	pair<int,int> temp;
@@ -71,6 +75,7 @@ pair<int,int> PatricksMazeSolver::getCell(int x, int y, Direction d)
 	return temp;
 }
 
+//recursive maze solver that uses a depth first approach
 void PatricksMazeSolver::recursiveSolver(int x, int y, const Maze& maze, MazeSolution& mazeSolution)
 {
 	Direction m;
